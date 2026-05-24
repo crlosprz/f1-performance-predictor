@@ -267,27 +267,37 @@ with tab2:
     st.plotly_chart(fig, width="stretch")
     st.dataframe(df, width="stretch")
 
+
+
 with tab3:
     st.markdown(f"### Datos históricos del {circuit}")
 
-    circuit_df = df[df["GrandPrix"] == circuit]
+    selected_season_circuit = st.selectbox(
+        "Selecciona temporada",
+        sorted(df["Season"].unique()),
+        key="circuit_season"
+    )
+
+    circuit_df = df[
+        (df["GrandPrix"] == circuit) &
+        (df["Season"] == selected_season_circuit)
+    ]
 
     fig = px.scatter(
         circuit_df,
         x="GridPosition",
         y="FinalPosition",
         color="Driver",
-        symbol="Season",
         size="Points",
         hover_data=["Season", "Team", "Points"],
-        title="Relación entre posición de salida y posición final",
+        title=f"Relación entre posición de salida y posición final - {selected_season_circuit}",
         color_discrete_sequence=px.colors.qualitative.Dark24
     )
 
     fig.update_traces(
         marker=dict(
-            size=11,
-            opacity=0.85,
+            size=12,
+            opacity=0.9,
             line=dict(width=1, color="black")
         )
     )
@@ -298,7 +308,12 @@ with tab3:
         xaxis_title="Posición de salida",
         yaxis_title="Posición final"
     )
+
     fig.update_yaxes(autorange="reversed")
+
+    st.plotly_chart(fig, width="stretch")
+
+    st.dataframe(circuit_df, width="stretch")
     
     st.plotly_chart(fig, use_container_width=True)
 
