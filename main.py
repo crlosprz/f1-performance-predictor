@@ -298,6 +298,8 @@ with tab3:
         xaxis_title="Posición de salida",
         yaxis_title="Posición final"
     )
+    fig.update_yaxes(autorange="reversed")
+    
     st.plotly_chart(fig, use_container_width=True)
 
     st.dataframe(circuit_df, use_container_width=True)
