@@ -277,10 +277,27 @@ with tab3:
         x="GridPosition",
         y="FinalPosition",
         color="Driver",
-        hover_data=["Season", "Team"],
-        title="Relación entre posición de salida y posición final"
+        symbol="Season",
+        size="Points",
+        hover_data=["Season", "Team", "Points"],
+        title="Relación entre posición de salida y posición final",
+        color_discrete_sequence=px.colors.qualitative.Dark24
     )
 
+    fig.update_traces(
+        marker=dict(
+            size=11,
+            opacity=0.85,
+            line=dict(width=1, color="black")
+        )
+    )
+
+    fig.update_layout(
+        height=600,
+        legend_title_text="Piloto",
+        xaxis_title="Posición de salida",
+        yaxis_title="Posición final"
+    )
     st.plotly_chart(fig, use_container_width=True)
 
     st.dataframe(circuit_df, use_container_width=True)
