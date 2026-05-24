@@ -245,7 +245,7 @@ with tab1:
         title=f"Evolución de resultados de {driver}"
     )
 
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, width="stretch", key="grafico_piloto")
 
 with tab2:
     st.markdown("### Resultados por equipo")
@@ -264,7 +264,7 @@ with tab2:
         title="Victorias por equipo"
     )
 
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, width="stretch", key="grafico_equipos")
     st.dataframe(df, width="stretch")
 
 
@@ -311,7 +311,7 @@ with tab3:
 
     fig.update_yaxes(autorange="reversed")
 
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, width="stretch", key="grafico_circuitos")
 
     st.dataframe(circuit_df, width="stretch")
     
@@ -350,7 +350,7 @@ with tab4:
             hover_data=["CarrerasLluvia", "Top10Rate", "Podios", "Victorias"]
         )
 
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, width="stretch", key="grafico_lluvia")
         st.dataframe(rain_summary, width="stretch")
 
 with tab5:
@@ -393,7 +393,7 @@ with tab5:
         ]
     )
 
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, width="stretch", key="grafico_companero")
 
     st.dataframe(teammate_summary, width="stretch")
 
